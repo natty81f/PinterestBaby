@@ -25,6 +25,16 @@
     <ul id='{{_id}}' class='nav nav-list text-left'>
       <li class='thumbnail'> <img src='{{url}}'/> </li>
       <div class='thumbnail content'>
+            <!-- displays like buttons only when the user is logged in -->
+            {{#if currentUser}}
+              <div class='like-bar'>
+                <a href='#' class='like'>
+                  <i class='fa fa-heart-o'></i>
+                </a>
+                  <span class='label label-danger'>{{numLikes}}</span>
+                  <span class='badge badge-default'>{{likesThis}}</span>
+              </div>
+            {{/if}}
         <li><strong>{{title}}</strong></li>
         <li>{{format}}</li>
       </div>

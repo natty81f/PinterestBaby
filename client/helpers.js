@@ -21,3 +21,21 @@ Template.books.helpers({
     return Books.find({catName:Session.get("category")});
   }
 });
+
+//helper function to display number of likes and whether users have already liked it
+Template.bok.helpers({
+  numLikes:function() {
+    return Likes.find({book:this._id}).count();
+  },
+  likesThis:function() {
+    var doeslike = Likes.findOne({muser:Meteor.userId(), book:this._id});
+    if (doeslike) {
+      return 'You liked this';
+    }
+  }
+});
+
+//Use username as credential instead of an email as a way to login
+Accounts.ui.config({
+  passwordSignupFields: "USERNAME_ONLY"
+});
